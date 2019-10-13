@@ -90,7 +90,7 @@ data GmComponent (t :: GmComponentType) eps = GmComponent {
   , gmcEntrypoints     :: eps
   , gmcSourceDirs      :: [FilePath]
   , gmcName            :: ChComponentName
-  , gmcNeedsBuildOutput :: NeedsBuildOutput
+--  , gmcNeedsBuildOutput :: NeedsBuildOutput
   } deriving (Eq, Ord, Show, Read, Generic, Functor)
 
 instance Binary eps => Binary (GmComponent t eps) where
@@ -143,9 +143,10 @@ instance Binary ChEntrypoint where
 instance Binary ChLibraryName where
     put = ggput . from
     get = to `fmap` ggget
-instance Binary NeedsBuildOutput where
+instance Binary EnvOverride where
     put = ggput . from
     get = to `fmap` ggget
+
 
 
 -- ---------------------------------------------------------------------
